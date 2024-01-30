@@ -5,21 +5,16 @@ author: Adrian Salihi
 date: 30th January 2024
 """
 import tkinter as tk
+import os
+import supplemental_functions as sup
 
-def key_press(event):
-    key = event.char
-    print(key, 'is pressed')
+if __name__ == '__main__':
+    os.chdir('/Users/adrianschmidt/repos/video_gui/videos')
+    module_list = os.listdir()
+    root = tk.Tk()
 
-def eye_opening():
-    print("eye_opening!")
+    for module in module_list:
+        collection = tk.Button(root, text=module, command=lambda module=module : sup.module_window(root, module)).pack()
 
-def open_new_window(window):
-    new_window = tk.Toplevel(window)
-    new_window.title("new")
-    close_all = tk.Button(new_window, text="click_me_to_close", command=root.destroy).pack()
-
-root = tk.Tk()
-root.geometry('200x200')
-eye_opening = tk.Button(root, text="eye_opening", command=lambda : open_new_window(root)).pack()
-
-root.mainloop()
+    os.chdir('/Users/adrianschmidt/repos/video_gui/videos')
+    root.mainloop()
